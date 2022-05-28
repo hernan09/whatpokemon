@@ -1,4 +1,8 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 
-createApp(App).mount('#app')
+import './css/animation.css';
+import './css/style.css';
+import './css/bootstrap.min.css';
+
+createApp(App).mount('#app');

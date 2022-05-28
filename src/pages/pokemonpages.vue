@@ -1,0 +1,170 @@
+<template>
+  <div class="containerpages">
+    <img
+      v-if="pokemon.id"
+      class="title-one"
+      src="@/assets/whatis.png"
+      alt="..."
+    />
+    <h1 v-if="!pokemon.id">Espere por favor...</h1>
+    <div class="subcontent" v-if="pokemon.id">
+      <img src="@/assets/pokemon.png" class="title-span" />
+      <img
+        v-if="pokemon.id"
+        class="title-interrogative"
+        src="@/assets/interrogative.png"
+        alt=""
+      />
+      <PokemonPicture
+        :pokemonId="pokemon.id"
+        :showpokemon="showpokemon"
+      ></PokemonPicture>
+      <div class="content-buttons">
+        <PokemonOptions
+          @pokemon-selection="checkAnswer"
+          :pokemons="pokemonarr"
+          :checked="showcheked"
+        ></PokemonOptions>
+        <span class="content-poball">
+          <img
+            class="pokebutonball"
+            @click="restar"
+            src="../assets/pokebola.png"
+            alt=""
+          />
+          <h3 @click="restar" class="titleball">Play</h3>
+        </span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import PokemonOptions from '@/components/pokemonOptions.vue';
+import PokemonPicture from '@/components/pokemonPicture.vue';
+import getPokemonOptions from '@/helpers/getPokemonsOptions';
+
+export default {
+  name: 'VueappPokemonpages',
+  components: {
+    PokemonPicture,
+    PokemonOptions,
+  },
+
+  data() {
+    return {
+      pokemonarr: [],
+      pokemon: {},
+      showpokemon: false,
+      showcheked: String,
+    };
+  },
+
+  mounted() {
+    this.mixedpokemonArray();
+  },
+  watch: {
+    showpokemon(newshow, oldshow) {
+      console.log('from', oldshow, 'to', newshow);
+      if (newshow === true) {
+        setTimeout(() => {
+          this.playAnimation();
+        }, 1000);
+      }
+    },
+  },
+  methods: {
+    playAnimation() {
+      if (this.showpokemon) {
+        const imgApear = document.querySelector('.pokemonId');
+        console.log(imgApear);
+        imgApear.addEventListener('click', () => {
+          imgApear.addclass;
+        });
+      }
+    },
+    async mixedpokemonArray() {
+      this.pokemonarr = await getPokemonOptions();
+      const rndInteger = Math.floor(Math.random() * 4);
+      this.pokemon = this.pokemonarr[rndInteger];
+    },
+    checkAnswer(selectedid) {
+      if (selectedid === this.pokemon.id) {
+        this.showpokemon = true;
+        this.showcheked = 'list-active';
+        console.log('es el id seleccionado', this.showcheked);
+      } else if (selectedid !== this.pokemon.id) {
+        this.showcheked = 'list-disable';
+        console.log('no es el id seleccionado', this.showcheked);
+      } else {
+        this.showcheked = null;
+      }
+    },
+    restar() {
+      this.showpokemon = false;
+      this.mixedpokemonArray();
+    },
+  },
+};
+</script>
+
+<style scoped>
+.content-poball {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pokebutonball {
+  width: 100px;
+  height: 130px;
+  cursor: pointer;
+}
+.titleball {
+  position: absolute;
+  color: white;
+  font-size: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  bottom: 60px;
+}
+.title-one {
+  width: 260px;
+  height: 60px;
+  position: relative;
+  left: 70px;
+  top: 45px;
+}
+.title-interrogative {
+  position: relative;
+  transform: rotateZ(35deg);
+  top: 31px;
+}
+@media (max-width: 450px) {
+  .title-interrogative {
+    display: none;
+  }
+  .title-one {
+    left: 50px;
+  }
+}
+.containerpages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-span {
+  width: 325px;
+  height: 130px;
+}
+.subcontent {
+  margin-top: 50px;
+}
+.content-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+</style>
