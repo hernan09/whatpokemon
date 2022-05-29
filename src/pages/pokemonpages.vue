@@ -145,7 +145,7 @@ export default {
     display: none;
   }
   .title-one {
-    left: 50px;
+    left: 40px;
   }
 }
 .containerpages {
