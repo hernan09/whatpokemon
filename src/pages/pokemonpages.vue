@@ -3,7 +3,7 @@
     <img
       v-if="pokemon.id"
       class="title-one"
-      src="@/assets/whatis.png"
+      src="@/assets/whois.png"
       alt="..."
     />
     <img
