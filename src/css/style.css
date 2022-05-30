@@ -9,10 +9,9 @@ body {
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  background-image: linear-gradient(
-    #17082e 0,
-    #1a0933 7%,
-    #c9a102 80%,
-    #0c1f4c 100%
-  ) !important;
+  background-image: url('../assets/pradera.png') !important;
+  background-blend-mode: hard-light;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
 }

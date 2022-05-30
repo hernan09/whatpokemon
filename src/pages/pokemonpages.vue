@@ -6,7 +6,12 @@
       src="@/assets/whatis.png"
       alt="..."
     />
-    <h1 v-if="!pokemon.id">Espere por favor...</h1>
+    <img
+      v-if="!pokemon.id"
+      src="https://c.tenor.com/fSsxftCb8w0AAAAi/pikachu-running.gif"
+      alt="pikachu"
+      class="pikachuload"
+    />
     <div class="subcontent" v-if="pokemon.id">
       <img src="@/assets/pokemon.png" class="title-span" />
       <img
@@ -62,27 +67,19 @@ export default {
 
   mounted() {
     this.mixedpokemonArray();
+    this.changeBlendMode();
   },
   watch: {
     showpokemon(newshow, oldshow) {
       console.log('from', oldshow, 'to', newshow);
       if (newshow === true) {
         setTimeout(() => {
-          this.playAnimation();
+          console.log('asda');
         }, 1000);
       }
     },
   },
   methods: {
-    playAnimation() {
-      if (this.showpokemon) {
-        const imgApear = document.querySelector('.pokemonId');
-        console.log(imgApear);
-        imgApear.addEventListener('click', () => {
-          imgApear.addclass;
-        });
-      }
-    },
     async mixedpokemonArray() {
       this.pokemonarr = await getPokemonOptions();
       const rndInteger = Math.floor(Math.random() * 4);
@@ -91,14 +88,19 @@ export default {
     checkAnswer(selectedid) {
       if (selectedid === this.pokemon.id) {
         this.showpokemon = true;
-        this.showcheked = 'list-active';
-        console.log('es el id seleccionado', this.showcheked);
+        return 'active';
       } else if (selectedid !== this.pokemon.id) {
-        this.showcheked = 'list-disable';
-        console.log('no es el id seleccionado', this.showcheked);
+        return 'disable';
       } else {
-        this.showcheked = null;
+        return null;
       }
+    },
+    changeBlendMode() {
+      const x = document.getElementsByClassName('main');
+
+      setInterval(() => {
+        x.style.backgroundBlendMode = 'hard-light';
+      }, 4000);
     },
     restar() {
       this.showpokemon = false;
@@ -166,5 +168,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-content: center;
+}
+.pikachuload {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 </style>

@@ -33,7 +33,7 @@ export default {
 
   mounted() {
     this.checkListStyle();
-    console.log('checked', this.props?.checked);
+    console.log('checked', this?.checked);
   },
 
   methods: {
@@ -41,6 +41,16 @@ export default {
       this.pokemons.forEach((element) => {
         console.log('...', element);
       });
+    },
+    checkAnswer(selectedid) {
+      if (selectedid === this.pokemon.id) {
+        this.showpokemon = true;
+        return 'active';
+      } else if (selectedid !== this.pokemon.id) {
+        return 'disable';
+      } else {
+        return null;
+      }
     },
   },
 };
@@ -60,12 +70,14 @@ li {
   text-transform: uppercase;
   font-weight: 700;
   font-family: 'Metal Mania', cursive;
-  color: white;
+  color: #9e0504;
   display: flex;
   justify-content: center;
   margin: auto;
   margin-bottom: 10px;
   border: none;
+  background-color: azure;
+  opacity: 0.9;
 }
 .btn-outline-light:hover {
   color: #fff;
