@@ -41,24 +41,26 @@ export default {
 </script>
 
 <style scoped>
-.pokemoncontainer {
-  height: 250px;
-  display: flex;
-  justify-content: center;
-}
+@media (min-width: 450px) {
+  .pokemoncontainer {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+  }
 
-.hiden-pokemon {
-  filter: brightness(0);
-}
-img {
-  height: 200px;
-  width: 200px;
-  position: absolute;
-  user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
+  .hiden-pokemon {
+    filter: brightness(0);
+  }
+  img {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+  }
 }
 @media (max-width: 450px) {
   .pokemoncontainer {

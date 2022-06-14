@@ -96,7 +96,8 @@ export default {
       }
     },
     changeBlendMode() {
-      const x = document.getElementsByClassName('main');
+      const x = document.getElementsByClassName('main')[0];
+      console.log('la x', x);
 
       setInterval(() => {
         x.style.backgroundBlendMode = 'hard-light';
@@ -142,20 +143,7 @@ export default {
   transform: rotateZ(35deg);
   top: 31px;
 }
-@media (max-width: 450px) {
-  .title-interrogative {
-    display: none;
-  }
-  .title-one {
-    left: 52px;
-    width: 170px;
-    height: 52px;
-  }
-  .title-span {
-    width: 260px;
-    height: 90px;
-  }
-}
+
 .containerpages {
   display: flex;
   flex-direction: column;
@@ -184,5 +172,19 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
+}
+@media (max-width: 450px) {
+  .title-interrogative {
+    display: none;
+  }
+  .title-one {
+    left: 52px;
+    width: 170px;
+    height: 52px;
+  }
+  .title-span {
+    width: 260px;
+    height: 90px;
+  }
 }
 </style>

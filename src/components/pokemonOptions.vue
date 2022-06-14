@@ -32,16 +32,10 @@ export default {
   },
 
   mounted() {
-    this.checkListStyle();
     console.log('checked', this?.checked);
   },
 
   methods: {
-    checkListStyle() {
-      this.pokemons.forEach((element) => {
-        console.log('...', element);
-      });
-    },
     checkAnswer(selectedid) {
       if (selectedid === this.pokemon.id) {
         this.showpokemon = true;
