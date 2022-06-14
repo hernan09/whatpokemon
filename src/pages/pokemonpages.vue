@@ -147,7 +147,13 @@ export default {
     display: none;
   }
   .title-one {
-    left: 40px;
+    left: 52px;
+    width: 170px;
+    height: 52px;
+  }
+  .title-span {
+    width: 260px;
+    height: 90px;
   }
 }
 .containerpages {

@@ -46,6 +46,7 @@ export default {
   display: flex;
   justify-content: center;
 }
+
 .hiden-pokemon {
   filter: brightness(0);
 }
@@ -58,5 +59,24 @@ img {
   -ms-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
+}
+@media (max-width: 450px) {
+  .pokemoncontainer {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  img {
+    height: 160px;
+    width: 160px;
+    position: absolute;
+    user-select: none;
+    top: 15px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+  }
 }
 </style>
