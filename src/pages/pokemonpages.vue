@@ -30,6 +30,7 @@
           :pokemons="pokemonarr"
           :checked="showcheked"
         ></PokemonOptions>
+        <span class="message" id="message"></span>
         <span class="content-poball">
           <img
             class="pokebutonball"
@@ -62,12 +63,12 @@ export default {
       pokemon: {},
       showpokemon: false,
       showcheked: String,
+      flagText: false,
     };
   },
 
   mounted() {
     this.mixedpokemonArray();
-    this.changeBlendMode();
   },
   watch: {
     showpokemon(newshow, oldshow) {
@@ -86,24 +87,25 @@ export default {
       this.pokemon = this.pokemonarr[rndInteger];
     },
     checkAnswer(selectedid) {
+      document.getElementById('message').style.display = 'flex';
       if (selectedid === this.pokemon.id) {
         this.showpokemon = true;
+        this.flagText = true;
+        document.getElementById('message').innerText = 'es el correcto';
+        document.getElementById('message').style.backgroundColor = 'green';
         return 'active';
       } else if (selectedid !== this.pokemon.id) {
+        this.flagText = false;
+        document.getElementById('message').innerText =
+          'lo siento no es el correcto';
+        document.getElementById('message').style.backgroundColor = 'brown';
         return 'disable';
       } else {
         return null;
       }
     },
-    changeBlendMode() {
-      const x = document.getElementsByClassName('main')[0];
-      console.log('la x', x);
-
-      setInterval(() => {
-        x.style.backgroundBlendMode = 'hard-light';
-      }, 4000);
-    },
     restar() {
+      document.getElementById('message').style.display = 'none';
       this.showpokemon = false;
       this.mixedpokemonArray();
     },
@@ -172,6 +174,19 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
+}
+#message {
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+}
+.message {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }
 @media (max-width: 450px) {
   .title-interrogative {
