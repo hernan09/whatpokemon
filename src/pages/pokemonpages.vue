@@ -182,10 +182,8 @@ export default {
 .pikachuload {
   width: 150px;
   height: 150px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
+  position: relative;
+  top: 240px;
   bottom: 0;
   margin: auto;
 }
