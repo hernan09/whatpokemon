@@ -1,5 +1,6 @@
 <template>
   <div class="containerpages">
+    <PokemonCounter :counter="counter" v-if="pokemon.id" />
     <img
       v-if="pokemon.id"
       class="title-one"
@@ -49,12 +50,14 @@
 import PokemonOptions from '@/components/pokemonOptions.vue';
 import PokemonPicture from '@/components/pokemonPicture.vue';
 import getPokemonOptions from '@/helpers/getPokemonsOptions';
+import PokemonCounter from '@/components/pokemoncounter.vue';
 
 export default {
   name: 'VueappPokemonpages',
   components: {
     PokemonPicture,
     PokemonOptions,
+    PokemonCounter,
   },
 
   data() {
@@ -64,6 +67,8 @@ export default {
       showpokemon: false,
       showcheked: String,
       flagText: false,
+      pikaflagload: false,
+      counter: 0,
     };
   },
 
@@ -82,20 +87,28 @@ export default {
   },
   methods: {
     async mixedpokemonArray() {
+      this.pikaflagload = false;
       this.pokemonarr = await getPokemonOptions();
       const rndInteger = Math.floor(Math.random() * 4);
       this.pokemon = this.pokemonarr[rndInteger];
+      this.pikaflagload = true;
     },
     checkAnswer(selectedid) {
       document.getElementById('message').style.display = 'flex';
       if (selectedid === this.pokemon.id) {
         this.showpokemon = true;
         this.flagText = true;
+        this.counter = this.counter + 1;
         document.getElementById('message').innerText = 'es el correcto';
         document.getElementById('message').style.backgroundColor = 'green';
         return 'active';
       } else if (selectedid !== this.pokemon.id) {
         this.flagText = false;
+        if (this.counter > 0) {
+          this.counter = this.counter - 1;
+        } else {
+          this.counter;
+        }
         document.getElementById('message').innerText =
           'lo siento no es el correcto';
         document.getElementById('message').style.backgroundColor = 'brown';
@@ -150,6 +163,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .title-span {
@@ -166,8 +180,8 @@ export default {
   align-content: center;
 }
 .pikachuload {
-  width: 300px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   position: absolute;
   left: 0;
   right: 0;
