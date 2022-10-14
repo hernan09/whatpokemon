@@ -1,7 +1,7 @@
 import pokemonApi from '../api/pokemonaxios';
 
 const getPokemons = () => {
-  const pokemonsArr = Array.from(Array(650));
+  const pokemonsArr = Array.from(Array(450));
   return pokemonsArr.map((_, index) => index + 1);
 };
 
